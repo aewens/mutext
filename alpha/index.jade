@@ -1,0 +1,34 @@
+doctype html
+title &mu;Text
+link(href="http://fonts.googleapis.com/css?family=Fira+Mono|Lobster", 
+rel="stylesheet")
+link(href="css/style.css", rel="stylesheet")
+body
+    #load
+    #app
+        input#dialog(type="text")
+        header
+            span &mu;Text
+            nav
+                //- ul
+                //-     li File
+                //-     li Edit
+                //-     li Help
+        .clear
+        aside
+            span Files
+            .hr
+            ul#files
+                //- li.file test.coffee
+                //- li.file test.js
+        section
+            ul#lines
+            textarea
+        .clear
+        footer
+            span#info untitled
+            span#here |  
+            span#save Waiting
+noscript I'm sorry.
+script(data-main="bin/main", src="vendor/require.js")
+    
