@@ -2,7 +2,7 @@
 (function() {
   define(function() {
     var $;
-    return $ = {
+    $ = {
       create: function(selector) {
         var obj;
         obj = {
@@ -18,18 +18,104 @@
         return obj;
       },
       find: function(selector) {
-        var element;
+        var element, obj;
         element = document.querySelectorAll(selector)[0];
         if (element === void 0) {
           return null;
         }
-        if (element.length === 1) {
-          return element[0];
-        } else {
-          return element;
-        }
+        element = element.length === 1 ? element[0] : element;
+        return obj = {
+          element: element,
+          add: function(dom) {
+            return element.appendChild(dom.element);
+          },
+          css: function() {
+            var arg, k, v;
+            switch (arguments.length) {
+              case 1:
+                arg = arguments[0];
+                if (typeof arg === "object") {
+                  for (k in arg) {
+                    v = arg[k];
+                    element.style[k] = v;
+                  }
+                  return obj;
+                } else if (typeof arg === "string") {
+                  return element.style[arg];
+                } else {
+                  return obj;
+                }
+                break;
+              case 2:
+                k = arguments[0];
+                v = arguments[1];
+                element.style[k] = v;
+                return obj;
+              default:
+                return obj;
+            }
+          },
+          attr: function() {
+            var k, v;
+            switch (arguments.length) {
+              case 1:
+                return element.getAttribute(arguments[0]);
+              case 2:
+                k = arguments[0];
+                v = arguments[1];
+                element.setAttribute(k, v);
+                return obj;
+              default:
+                return obj;
+            }
+          },
+          hasAttr: function(attr) {
+            return element.hasAttribute(attr);
+          },
+          on: function(event, fn) {
+            element.addEventListener(event, fn);
+            return obj;
+          },
+          val: function() {
+            switch (arguments.length) {
+              case 0:
+                return element.value;
+              case 1:
+                return element.value = arguments[0];
+              default:
+                return obj;
+            }
+          },
+          html: function() {
+            switch (arguments.length) {
+              case 0:
+                return element.innerHTML;
+              case 1:
+                return element.innerHTML = arguments[0];
+              default:
+                return obj;
+            }
+          },
+          addClass: function() {
+            element.classList.add.apply(null, arguments);
+            return obj;
+          },
+          removeClass: function(klass) {
+            element.classList.remove(klass);
+            return obj;
+          },
+          hasClass: function(klass) {
+            element.classList.contains(klass);
+            return obj;
+          },
+          toggleClass: function(klass) {
+            element.classList.toggle(klass);
+            return obj;
+          }
+        };
       }
     };
+    return $;
   });
 
 }).call(this);

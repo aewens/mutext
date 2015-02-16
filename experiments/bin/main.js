@@ -5,8 +5,25 @@
   });
 
   require(["dom"], function($) {
-    console.log($.create("div").into(document.body));
-    return console.log($.find("body"));
+    var check, determ, _tests;
+    _tests = [];
+    check = function(res, expect) {
+      return _tests.push([res === expect, res, expect]);
+    };
+    return determ = function() {
+      var passed, t, _i, _len;
+      passed = 0;
+      for (_i = 0, _len = _tests.length; _i < _len; _i++) {
+        t = _tests[_i];
+        if (t) {
+          passed = passed + 1;
+        } else {
+          console.log("" + i + ": " + _tests[t][1] + " " + _tests[t][2]);
+        }
+      }
+      console.log("---");
+      return console.log("" + passed + "/" + _tests.length + " passed");
+    };
   });
 
 }).call(this);
