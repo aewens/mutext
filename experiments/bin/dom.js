@@ -18,14 +18,15 @@
         return obj;
       },
       find: function(selector) {
-        var element, obj;
+        var element;
         element = document.querySelectorAll(selector)[0];
         if (element === void 0) {
           return null;
         }
-        element = element.length === 1 ? element[0] : element;
-        return obj = {
-          element: element,
+        return $.load(element.length === 1 ? element[0] : element);
+      },
+      load: function(element) {
+        return {
           add: function(dom) {
             return element.appendChild(dom.element);
           },
@@ -39,20 +40,20 @@
                     v = arg[k];
                     element.style[k] = v;
                   }
-                  return obj;
+                  return $.load(element);
                 } else if (typeof arg === "string") {
                   return element.style[arg];
                 } else {
-                  return obj;
+                  return $.load(element);
                 }
                 break;
               case 2:
                 k = arguments[0];
                 v = arguments[1];
                 element.style[k] = v;
-                return obj;
+                return $.load(element);
               default:
-                return obj;
+                return $.load(element);
             }
           },
           attr: function() {
@@ -64,9 +65,9 @@
                 k = arguments[0];
                 v = arguments[1];
                 element.setAttribute(k, v);
-                return obj;
+                return $.load(element);
               default:
-                return obj;
+                return $.load(element);
             }
           },
           hasAttr: function(attr) {
@@ -74,7 +75,7 @@
           },
           on: function(event, fn) {
             element.addEventListener(event, fn);
-            return obj;
+            return $.load(element);
           },
           val: function() {
             switch (arguments.length) {
@@ -83,7 +84,7 @@
               case 1:
                 return element.value = arguments[0];
               default:
-                return obj;
+                return $.load(element);
             }
           },
           html: function() {
@@ -93,24 +94,24 @@
               case 1:
                 return element.innerHTML = arguments[0];
               default:
-                return obj;
+                return $.load(element);
             }
           },
-          addClass: function() {
-            element.classList.add.apply(null, arguments);
-            return obj;
+          addClass: function(klass) {
+            element.classList.add(klass);
+            return $.load(element);
           },
           removeClass: function(klass) {
             element.classList.remove(klass);
-            return obj;
+            return $.load(element);
           },
           hasClass: function(klass) {
             element.classList.contains(klass);
-            return obj;
+            return $.load(element);
           },
           toggleClass: function(klass) {
             element.classList.toggle(klass);
-            return obj;
+            return $.load(element);
           }
         };
       }

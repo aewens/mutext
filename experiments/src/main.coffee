@@ -16,3 +16,6 @@ require [
                 console.log "#{i}: #{_tests[t][1]} #{_tests[t][2]}"
         console.log "---"
         console.log "#{passed}/#{_tests.length} passed"
+
+    $.create("div").into(document.body)
+    console.log $.find("div").addClass("test")

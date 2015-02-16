@@ -10,7 +10,7 @@
     check = function(res, expect) {
       return _tests.push([res === expect, res, expect]);
     };
-    return determ = function() {
+    determ = function() {
       var passed, t, _i, _len;
       passed = 0;
       for (_i = 0, _len = _tests.length; _i < _len; _i++) {
@@ -24,6 +24,8 @@
       console.log("---");
       return console.log("" + passed + "/" + _tests.length + " passed");
     };
+    $.create("div").into(document.body);
+    return console.log($.find("div").addClass("test"));
   });
 
 }).call(this);
