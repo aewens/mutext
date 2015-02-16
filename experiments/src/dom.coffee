@@ -35,18 +35,6 @@ define ->
                             element.style[k] = v
                             return $.load(element)
                         else return $.load(element)
-                attr: ->
-                    switch arguments.length
-                        when 1
-                            return element.getAttribute(arguments[0])
-                        when 2
-                            k = arguments[0]
-                            v = arguments[1]
-                            element.setAttribute(k, v)
-                            return $.load(element)
-                        else return $.load(element)
-                hasAttr: (attr) ->
-                    return element.hasAttribute(attr)
                 on: (event, fn) ->
                     element.addEventListener(event, fn)
                     return $.load(element)
@@ -64,18 +52,27 @@ define ->
                         when 1
                             return element.innerHTML = arguments[0]
                         else return $.load(element)
-                addClass: (klass) ->
-                    element.classList.add(klass)
-                    return $.load(element)
-                removeClass: (klass) ->
-                    element.classList.remove(klass)
-                    return $.load(element)
-                hasClass: (klass) ->
-                    element.classList.contains(klass)
-                    return $.load(element)
-                toggleClass: (klass) ->
-                    element.classList.toggle(klass)
-                    return $.load(element)
+                attr:
+                    get: (a) ->
+                        return element.getAttribute(a)
+                    set: (k, v) ->
+                        element.setAttribute(k, v)
+                        return $.load(element)
+                    has: (a) ->
+                        return element.hasAttribute(a)
+                group:
+                    add: (klass) ->
+                        element.classList.add(klass)
+                        return $.load(element)
+                    remove: (klass) ->
+                        element.classList.remove(klass)
+                        return $.load(element)
+                    has: (klass) ->
+                        element.classList.contains(klass)
+                        return $.load(element)
+                    toggle: (klass) ->
+                        element.classList.toggle(klass)
+                        return $.load(element)
             }
             
     return $

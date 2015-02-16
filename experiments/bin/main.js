@@ -25,7 +25,7 @@
       return console.log("" + passed + "/" + _tests.length + " passed");
     };
     $.create("div").into(document.body);
-    return console.log($.find("div").addClass("test"));
+    return console.log($.find("div").group.add("test").attr.set("works", true));
   });
 
 }).call(this);

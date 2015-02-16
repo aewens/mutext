@@ -18,4 +18,4 @@ require [
         console.log "#{passed}/#{_tests.length} passed"
 
     $.create("div").into(document.body)
-    console.log $.find("div").addClass("test")
+    console.log $.find("div").group.add("test").attr.set("works", true)

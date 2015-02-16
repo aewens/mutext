@@ -56,23 +56,6 @@
                 return $.load(element);
             }
           },
-          attr: function() {
-            var k, v;
-            switch (arguments.length) {
-              case 1:
-                return element.getAttribute(arguments[0]);
-              case 2:
-                k = arguments[0];
-                v = arguments[1];
-                element.setAttribute(k, v);
-                return $.load(element);
-              default:
-                return $.load(element);
-            }
-          },
-          hasAttr: function(attr) {
-            return element.hasAttribute(attr);
-          },
           on: function(event, fn) {
             element.addEventListener(event, fn);
             return $.load(element);
@@ -97,21 +80,35 @@
                 return $.load(element);
             }
           },
-          addClass: function(klass) {
-            element.classList.add(klass);
-            return $.load(element);
+          attr: {
+            get: function(a) {
+              return element.getAttribute(a);
+            },
+            set: function(k, v) {
+              element.setAttribute(k, v);
+              return $.load(element);
+            },
+            has: function(a) {
+              return element.hasAttribute(a);
+            }
           },
-          removeClass: function(klass) {
-            element.classList.remove(klass);
-            return $.load(element);
-          },
-          hasClass: function(klass) {
-            element.classList.contains(klass);
-            return $.load(element);
-          },
-          toggleClass: function(klass) {
-            element.classList.toggle(klass);
-            return $.load(element);
+          group: {
+            add: function(klass) {
+              element.classList.add(klass);
+              return $.load(element);
+            },
+            remove: function(klass) {
+              element.classList.remove(klass);
+              return $.load(element);
+            },
+            has: function(klass) {
+              element.classList.contains(klass);
+              return $.load(element);
+            },
+            toggle: function(klass) {
+              element.classList.toggle(klass);
+              return $.load(element);
+            }
           }
         };
       }
